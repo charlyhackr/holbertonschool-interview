@@ -17,6 +17,6 @@ def canUnlockAll(boxes):
             if isinstance(
                     llave, int) and 0 <= llave < lon and llave not in checkr:
                 checkr.add(llave)
-                lista_de_llaves.add(llave)
+                lista_de_llaves.append(llave)
 
     return lon == len(checkr)
