@@ -4,7 +4,7 @@
 def canUnlockAll(boxes):
     '''function for unlock all'''
 
-    if boxes[0]:
+    if len(boxes) == 0:
         return True
 
     checkr = {0}
