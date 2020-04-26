@@ -1,9 +1,9 @@
 #include "lists.h"
 
 /**
- * insert_node - inserts node at correct place
+ * insert_node - inserts node
  * @head: head of the linked list
- * @number: data of the new node
+ * @number: data of new node
  * Return: sorted linked list with a new node
  */
 listint_t *insert_node(listint_t **head, int number)
