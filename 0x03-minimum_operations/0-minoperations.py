@@ -1,24 +1,22 @@
 #!/usr/bin/python3
-import math
-""""
-    Solution: the problem boils down to find the prime factors and return their
-sum.
-"""
-
-
-def sum_of_prime_factors(n):
-    res = 0
-
-    if n <= 1:
-        return res
-    for i in range(2, int(math.sqrt(n) + 1)):
-        while n % i == 0:
-            n = n // i
-            res += i
-    if n >= 2:  # Case where n is prime number
-        res += n
-    return res
+"""minOperations"""
 
 
 def minOperations(n):
-    return sum_of_prime_factors(n)
+    """number of operations to copy paste
+    Args:
+        n: given number
+    Returns:
+        num: number of operations.
+    """
+    p = 2
+    num = 0
+    if type(n) != int or n <= 1:
+        return 0
+    while n != 1:
+        if n % p == 0:
+            n = n / p
+            num = num + p
+        else:
+            p = p + 1
+    return int(num)
