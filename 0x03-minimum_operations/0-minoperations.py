@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 import math
+""""
+    Solution: the problem boils down to find the prime factors and return their
+sum.
 """
 
-   Solution: boils down to find the prime factors and return their sum
-"""
 
-
-def sum_prime_factors(n):
+def sum_of_prime_factors(n):
     res = 0
 
     if n <= 1:
@@ -15,10 +15,10 @@ def sum_prime_factors(n):
         while n % i == 0:
             n = n // i
             res += i
-    if n >= 2:  # case where n is prime
+    if n >= 2:  # Case where n is prime number
         res += n
     return res
 
 
 def minOperations(n):
-    return sum_prime_factors(n)
+    return sum_of_prime_factors(n)
