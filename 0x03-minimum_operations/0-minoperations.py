@@ -1,9 +1,10 @@
-#/usr/bin/python3
+#!/usr/bin/python3
 import math
 """
 
    Solution: boils down to find the prime factors and return their sum
 """
+
 
 def sum_prime_factors(n):
     res = 0
@@ -14,7 +15,7 @@ def sum_prime_factors(n):
         while n % i == 0:
             n = n // i
             res += i
-    if n >= 2: # case where n is prime
+    if n >= 2:  # case where n is prime
         res += n
     return res
 
