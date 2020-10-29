@@ -1,44 +1,44 @@
 #!/usr/bin/python3
-"""
-The N Queens Problem
-Show all possible ways to place N non-attacking Queens on an NxN board
-"""
-
+''' N queens problem '''
 import sys
-import math
+from copy import deepcopy
 
-solutions = []
-can_place_count = [0]
-nqueens_count = [0]
 
-def can_place(board, row, col):
-    """Checks if [row, col] is a safe position on the board"""
-    can_place_count[0] += 1
+def is_valid(board, row):
     for i in range(row):
-        if board[i] == col or abs(i - row) == abs(board[i] - col):
+        diff = abs(board[i][1] - board[row][1])
+        if diff == 0 or diff == row - i:
             return False
     return True
 
 
-def nqueens(board, row, n):
-    """O(n!) time, O(n) space"""
-    nqueens_count[0] += 1
+def n_queens(res, board, row, n):
     if row == n:
-        return solutions.append(board[:])
-    for col in range(n):
-        if can_place(board, row, col):
-            board[row] = col
-            nqueens(board, row + 1, n)
+        # Deep copy is needed because board is a 2D list
+        # or you can just print the board if task is to dislay solutions
+        res.append(deepcopy(board))
+    else:
+        for col in range(n):
+            board[row][1] = col
+            if is_valid(board, row):
+                n_queens(res, board, row + 1, n)
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     if len(sys.argv) != 2:
-        print("Usage: nqueens N") or exit(1)
+        print("Usage: nqueens N")
+        exit(1)
     try:
         n = int(sys.argv[1])
-    except ValueError:
-        print("N must be a number") or exit(1)
+    except Exception:
+        print("N must be a number")
+        exit(1)
     if n < 4:
-        print("N must be at least 4") or exit(1)
-    nqueens([None] * n, 0, n)
-    [print([[row, col] for row, col in enumerate(sol)]) for sol in solutions]
-    print(n, can_place_count, nqueens_count, can_place_count[0]/nqueens_count[0], math.factorial(n), can_place_count[0]/(pow(2, n) + n))
+        print("N must be at least 4")
+        exit(1)
+
+    res = []
+    board = [[i, -1] for i in range(n)]
+    n_queens(res, board, 0, n)
+    for i in res:
+        print(i)
